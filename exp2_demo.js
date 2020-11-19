@@ -3,7 +3,7 @@ const btn_html = "<p><button class='jspsych-btn' style='font: normal 20px 等线
 const subID = jsPsych.randomization.randomID(8)
 const btn_html_timer =
     `<style onload="tid=setInterval(timer, 1000)"></style>
-     <button onclick="clearInterval(tid)" class="jspsych-btn" disabled=true >%choice%</button>`
+     <button onclick="clearInterval(tid)" class="jspsych-btn" disabled=true>%choice%</button>`
 const btn_html_timerreset =
     `<button onclick="clearInterval(tid)" class="jspsych-btn">%choice%</button>`
 
@@ -33,125 +33,10 @@ function addSliderValue(element_id = 'slider-value') {
 }
 
 // 导入刺激：视频和图片
-var timeline = [];
-// 正式实验
-// 0 注意
-var open_fullscreen = {
-    type: 'fullscreen',
-    fullscreen_mode: true,
-    message: `
-    <p style="font: 16pt 微软雅黑; text-align: left; line-height: 1.6em">
-    <b>
-    测验将在一个「全屏页面」开始，为确保最佳效果，请你：<br/>
-    （1）在电脑上进行测验，并使用主流浏览器打开本网页<br/>
-    &emsp;&emsp;（Chrome、Edge、Firefox、Safari等，不要用IE）<br/>
-    （2）关掉电脑上其他正在运行的程序或将其最小化<br/>
-    （3）将手机调至静音，并尽可能减少环境噪音干扰<br/>
-    （4）在测验过程中不要退出全屏<br/>
-    （5）务必认真作答<br/><br/>
-    </b>
-    如果你同意参与，并且清楚理解了上述要求，请点击开始：
-    </p>`,
-    button_label: '点击这里全屏开始',
-    delay_after: 100
-}
-
-// 1 欢迎语
-var welcome = {
-    type: "html-keyboard-response",
-    stimulus: `
-    <p style="font: bold 32pt 微软雅黑; color: #B22222">
-    欢迎参与我们的实验</p>
-    <p style="font: 20pt 微软雅黑; color: black"><br/>
-    <按空格键继续><br/>
-    <b>实验过程中请勿退出全屏</b><br/><br/></p>
-    <p style="font: 20pt 华文中宋; color: grey">
-    北京师范大学 <br/>2020年</p>`,
-};
-
-// 2 输入个人信息
-var Group = {
-    type: "html-button-response",
-    data: {
-        varname: "Group"
-    },
-    stimulus: "您的组别",
-    choices: ["1", "2"],
-    button_html: btn_html,
-    on_finish: function (data) {
-        addRespFromButton(data);
-    }
-};
-var ID = {
-    type: "survey-html-form",
-    data: {
-        varname: "ID"
-    },
-    preamble: "您的实验编号",
-    html: "<p><input name='Q0' type='number', required /></p>",
-    button_label: "继续",
-    on_finish: function (data) {
-        addRespFromSurvey(data);
-    }
-};
-var Sex = {
-    type: "html-button-response",
-    data: {
-        varname: "Sex"
-    },
-    stimulus: "您的性别",
-    choices: ["男", "女", "其他"],
-    button_html: btn_html,
-    on_finish: function (data) {
-        addRespFromButton(data);
-    }
-};
-
-var Age = {
-    type: "survey-html-form",
-    data: {
-        varname: "Age"
-    },
-    preamble: "您的年龄",
-    html: "<p><input name='Q0' type='number' placeholder='10~99'\
-                min=10 max=99 oninput='if(value.length>2) value=value.slice(0,2)'\
-                required /></p>",
-    button_label: "继续",
-    on_finish: function (data) {
-        addRespFromSurvey(data);
-    }
-};
-var Education = {
-    type: 'survey-html-form',
-    data: {
-        varname: 'Education'
-    },
-    preamble: '您的受教育程度',
-    html: `
-    <p><select name="Q0" size=10>
-    <option>1.硕士研究生及以上</option>
-    <option>2.大学本科</option>
-    <option>3.大学专科</option>
-    <option>4.高中</option>
-    <option>5.初中</option>
-    <option>6.小学</option>
-    <option>7.其他</option>
-    </select></p>`,
-    button_label: '继续',
-    on_finish: function (data) {
-        addRespFromSurvey(data)
-    }
-}
-// demographics
-var demographics = {
-    timeline: [
-        ID, Sex, Age, Education,
-    ]
-}
 // (1)视频
-var movie = ['Movie_Neutral/neutral1.mp4', 'Movie_Neutral/neutral2.mp4', 'Movie_Neutral/neutral3.mp4', 'Movie_Neutral/neutral4.mp4', 'Movie_Neutral/neutral5.mp4'
+var movie = ['Movie_Neutral/neutral1.mp4', 'Movie_Neutral/neutral2.mp4', 'Movie_Neutral/neutral3.mp4','Movie_Neutral/neutral4.mp4', 'Movie_Neutral/neutral5.mp4'
 ];
-var movieSeconds = [5, 5, 5, 5, 5]
+var movieSeconds = [5,5,5,5,5]
 // 定义刺激矩阵,movielist= [1,2,3,4,5]([0,1,2,3,4]);
 var movielist = new Array();
 for (var i = 0; i < 5; i++) {
@@ -303,31 +188,145 @@ for (var q = 0; q < Blocklist.length; q++) {
 
 
 // 3 实验部分
+var timeline = [];
+// 正式实验
+// 0 注意
+var open_fullscreen = {
+    type: 'fullscreen',
+    fullscreen_mode: true,
+    message: `
+    <p style="font: 16pt 微软雅黑; text-align: left; line-height: 1.6em">
+    <b>
+    测验将在一个「全屏页面」开始，为确保最佳效果，请你：<br/>
+    （1）在电脑上进行测验，并使用主流浏览器打开本网页<br/>
+    &emsp;&emsp;（Chrome、Edge、Firefox、Safari等，不要用IE）<br/>
+    （2）关掉电脑上其他正在运行的程序或将其最小化<br/>
+    （3）将手机调至静音，并尽可能减少环境噪音干扰<br/>
+    （4）在测验过程中不要退出全屏<br/>
+    （5）务必认真作答<br/><br/>
+    </b>
+    如果你同意参与，并且清楚理解了上述要求，请点击开始：
+    </p>`,
+    button_label: '点击这里全屏开始',
+    delay_after: 100,
+    button_html:btn_html_timerreset,
+}
+
+// 1 欢迎语
+var welcome = {
+    type: "html-button-response",
+    stimulus: `
+    <p style="font: bold 32pt 微软雅黑; color: #B22222">
+    欢迎参与我们的实验</p>
+    <p style="font: 20pt 微软雅黑; color: black"><br/>
+    <点击继续><br/>
+    <b>实验过程中请勿退出全屏</b><br/><br/></p>
+    <p style="font: 20pt 华文中宋; color: grey">
+    北京师范大学 <br/>2020年</p>`,
+    choices: ["继续"],
+    button_html: btn_html_timerreset,
+};
+
+// 2 输入个人信息
+var Group = {
+    type: "html-button-response",
+    data: {
+        varname: "Group"
+    },
+    stimulus: "您的组别",
+    choices: ["1", "2"],
+    button_html: btn_html_timerreset,
+    on_finish: function (data) {
+        addRespFromButton(data);
+    }
+};
+var ID = {
+    type: "survey-html-form",
+    data: {
+        varname: "ID"
+    },
+    preamble: "您的实验编号",
+    html: "<p><input name='Q0' type='number', required /></p>",
+    button_label: "继续",
+    on_finish: function (data) {
+        addRespFromSurvey(data);
+    }
+};
+var Sex = {
+    type: "html-button-response",
+    data: {
+        varname: "Sex"
+    },
+    stimulus: "您的性别",
+    choices: ["男", "女", "其他"],
+    button_html: btn_html,
+    on_finish: function (data) {
+        addRespFromButton(data);
+    }
+};
+
+var Age = {
+    type: "survey-html-form",
+    data: {
+        varname: "Age"
+    },
+    preamble: "您的年龄",
+    html: "<p><input name='Q0' type='number' placeholder='10~99'\
+                min=10 max=99 oninput='if(value.length>2) value=value.slice(0,2)'\
+                required /></p>",
+    button_label: "继续",
+    on_finish: function (data) {
+        addRespFromSurvey(data);
+    }
+};
+var Education = {
+    type: 'survey-html-form',
+    data: {
+        varname: 'Education'
+    },
+    preamble: '您的受教育程度',
+    html: `
+    <p><select name="Q0" size=10>
+    <option>1.硕士研究生及以上</option>
+    <option>2.大学本科</option>
+    <option>3.大学专科</option>
+    <option>4.高中</option>
+    <option>5.初中</option>
+    <option>6.小学</option>
+    <option>7.其他</option>
+    </select></p>`,
+    button_label: '继续',
+    on_finish: function (data) {
+        addRespFromSurvey(data)
+    }
+}
+// demographics
+var demographics = {
+    timeline: [
+        ID, Sex, Age, Education,
+    ]
+}
+
 // 3.1 总指导语
 var instructions = {
     type: "html-keyboard-response",
     stimulus: `
-    <p style="font: 24pt 微软雅黑; color: black">
-    在本实验中…… <br/>按任意键继续</p>`
+    <p style="font: 24pt 微软雅黑; color: black;text-align: left";>
+    <b>
+    本实验的流程大概如下：<br/>
+    1.评估当前的情绪状态。<br/>
+    2.观看视频并评估看完视频后的情绪状态。 <br/>
+    3.对一系列文字情境内容进行判断决策。<br/>
+    4.再次评估当前的情绪状态。<br/>
+    实验过程中，请注意屏幕显示的提示语。<br/><br/>
+    </b>
+    按任意键继续
+    </p>`
 };
 
 // 3.2 Block1
-// 3.2.1 情绪视频指导语
-var instrucforEmotion = {
-    type: "html-keyboard-response",
-    stimulus: `<p style="font: 24pt 微软雅黑; color: black">
-    接下来，你将会看到一个视频…… <br/>按任意键继续</p>`
-};
+// 3.2.0 情绪评分前测
 
-// 3.2.2 注视点：500-1000ms随机
-var fixation1 = {
-    type: 'html-keyboard-response',
-    stimulus: "+",
-    choices: jsPsych.NO_KEYS,
-    trial_duration: Math.floor(Math.random() * (1000 - 500 + 1) + 500),
-}
-
-// 3.2.3 情绪评分前测
 var PreEmotion = {
     type: 'html-slider-response',
     data: {
@@ -345,10 +344,26 @@ var PreEmotion = {
     button_label: '继续',
     require_movement: true
 }
+// 3.2.1 情绪视频指导语
+var instrucforEmotion = {
+    type: "html-button-response",
+    stimulus: `<p style="font: 24pt 微软雅黑; color: black">
+    接下来，你将会看到一个视频，请提前带上耳机！<br/>准备好后，请按继续</p>`,
+    choices: ["继续"],
+    button_html: btn_html_timerreset,
+};
 
-// 3.2.4 播放恐怖视频
+// 3.2.2 注视点：500-1000ms随机
+var fixation1 = {
+    type: 'html-keyboard-response',
+    stimulus: "+",
+    choices: jsPsych.NO_KEYS,
+    trial_duration: Math.floor(Math.random() * (1000 - 500 + 1) + 500),
+}
+
+// 3.2.3 播放恐怖视频
 var choice1 =
-    ['<span id="timer", style="color:rgb(0,0,0)">' + movieSeconds[movielist[0]] + '</span>秒后继续']
+    ['<span id="timer", style="color:rgb(240,240,240)">' + movieSeconds[movielist[0]] + '</span>秒后继续']
 var movieplay1 = {
     type: 'video-button-response',
     sources: [movie[movielist[0]]], // 随机？
@@ -381,7 +396,7 @@ var PostEmotion = {
 var instrucforDecision = {
     type: "html-keyboard-response",
     stimulus: `<p style="font: 24pt 微软雅黑; color: black">下面我们将阅读一段文字情境 <br/>假设您就是里面的主人翁，请以您自己的视角做出判断，判断没有对错之分 <br/>
-        不要考虑太久，根据第一反应做出判断即可<br/>按任意键继续</p>`
+        不要考虑太久，根据第一反应做出判断即可<br/>按照自己的真实心意作答，你的选择并不会被单独查看和处理，请不要担心<br/>请将双手放置于键盘上，按任意键继续</p>`
 };
 
 // 3.2.7 决策过程
@@ -411,7 +426,7 @@ var PostEmotion2 = {
     on_load: function () {
         setSliderAttr()
     },
-    stimulus: '看完视频后，您当前感受到的恐怖情绪程度如何？<br/>（1 = 丝毫没有感觉，9 = 感到非常恐怖）',
+    stimulus: '您当前感受到的恐怖情绪程度如何？<br/>（1 = 丝毫没有感觉，9 = 感到非常恐怖）',
     labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
     min: 1,
     max: 9,
@@ -424,10 +439,10 @@ var PostEmotion2 = {
 // 3.2.9 休息时间
 var rest = {
     type: 'html-button-response',
-    stimulus: '<p>请休息10秒钟……</p>',
-    choices: ['<span id="timer">10</span>秒后继续'],
+    stimulus: '<p>请休息五分钟……</p>',
+    choices: ['<span id="timer">300</span>秒后继续'],
     button_html: btn_html_timer,
-    trial_duration: 10 * 1000
+    trial_duration: 5 * 1000
 }
 // 3.2.10 alert
 var clock = {
@@ -435,12 +450,20 @@ var clock = {
     stimulus: 'Sound/clock.m4a',
     choices: ['继续'],
     prompt: "<p>休息结束，请做好准备……</p>",
-    button_html: btn_html_timerreset,
+    button_html: btn_html_timerreset
 }
 // 4 其他4个Block
+// 4.0 instrucfornextBlock
+var instrucfornextBlock = {
+    type: "html-button-response",
+    stimulus: `<p style="font: 24pt 微软雅黑; color: black">
+    下面，我们将进入新的实验部分，实验流程和刚刚的实验相同。<br/>准备好后，请按继续</p>`,
+    choices: ["继续"],
+    button_html: btn_html_timerreset,
+};
 // 4.1 Block2
 var choice2 =
-    ['<span id="timer", style="color:rgb(0,0,0)">' + movieSeconds[movielist[1]] + '</span>秒后继续']
+    ['<span id="timer", style="color:rgb(240,240,240)">' + movieSeconds[movielist[1]] + '</span>秒后继续']
 var movieplay2 = {
     type: 'video-button-response',
     sources: [movie[movielist[1]]], // 随机？
@@ -463,7 +486,7 @@ var test_procedure2 = {
 }
 // 4.2 Block3
 var choice3 =
-    ['<span id="timer", style="color:rgb(0,0,0)">' + movieSeconds[movielist[2]] + '</span>秒后继续']
+    ['<span id="timer", style="color:rgb(240,240,240)">' + movieSeconds[movielist[2]] + '</span>秒后继续']
 var movieplay3 = {
     type: 'video-button-response',
     sources: [movie[movielist[2]]], // 随机？
@@ -486,11 +509,11 @@ var test_procedure3 = {
 }
 // 4.3 Block4
 var choice4 =
-    ['<span id="timer", style="color:rgb(0,0,0)">' + movieSeconds[movielist[3]] + '</span>秒后继续']
+    ['<span id="timer", style="color:rgb(240,240,240)">' + movieSeconds[movielist[3]] + '</span>秒后继续']
 var movieplay4 = {
     type: 'video-button-response',
     sources: [movie[movielist[3]]], // 随机？
-    prompt: '请戴上耳机，观看视频',
+    prompt: ['观看结束，继续下一步'],
     choices: choice4,
     margin_vertical: '20px',
     autoplay: true,
@@ -534,9 +557,9 @@ var test_procedure5 = {
 // 5.1 各个Block
 var Test_Block1 = {
     timeline: [
-        instrucforEmotion,
-        fixation1,
         PreEmotion,
+        instrucforEmotion,
+        fixation1,       
         movieplay1,
         PostEmotion,
         instrucforDecision,
@@ -548,9 +571,9 @@ var Test_Block1 = {
 }
 var Test_Block2 = {
     timeline: [
-        instrucforEmotion,
-        fixation1,
         PreEmotion,
+        instrucforEmotion,
+        fixation1, 
         movieplay2,
         PostEmotion,
         instrucforDecision,
@@ -562,9 +585,9 @@ var Test_Block2 = {
 }
 var Test_Block3 = {
     timeline: [
-        instrucforEmotion,
-        fixation1,
         PreEmotion,
+        instrucforEmotion,
+        fixation1, 
         movieplay3,
         PostEmotion,
         instrucforDecision,
@@ -576,9 +599,9 @@ var Test_Block3 = {
 }
 var Test_Block4 = {
     timeline: [
-        instrucforEmotion,
-        fixation1,
         PreEmotion,
+        instrucforEmotion,
+        fixation1, 
         movieplay4,
         PostEmotion,
         instrucforDecision,
@@ -590,9 +613,9 @@ var Test_Block4 = {
 }
 var Test_Block5 = {
     timeline: [
-        instrucforEmotion,
-        fixation1,
         PreEmotion,
+        instrucforEmotion,
+        fixation1, 
         movieplay5,
         PostEmotion,
         instrucforDecision,
@@ -607,9 +630,13 @@ var Main_Timeline = [
     demographics,
     instructions,
     Test_Block1,
+    instrucfornextBlock,
     Test_Block2,
+    instrucfornextBlock,
     Test_Block3,
+    instrucfornextBlock,
     Test_Block4,
+    instrucfornextBlock,
     Test_Block5,
 ]
 
@@ -618,7 +645,7 @@ jsPsych.init({
     timeline: Main_Timeline,
     use_webaudio: false,
     on_finish: function () {
-        jsPsych.data.get().localSave('csv', `data_exp_Neutral_${subID}.csv`) // download from browser
+        jsPsych.data.get().localSave('csv', `data_exp_Fear_${subID}.csv`) // download from browser
         document.getElementById('jspsych-content').innerHTML += '实验结束，感谢您的参与！'
     }
 })
