@@ -37,7 +37,7 @@ function addSliderValue(element_id = 'slider-value') {
 var movie = ['Movie_Fear/fear1.mp4', 'Movie_Fear/fear2.mp4', 'Movie_Fear/fear3.mp4',
     'Movie_Fear/fear4.mp4', 'Movie_Fear/fear5.mp4'
 ];
-var movieSeconds = [5,5,5,5,5]
+var movieSeconds = [247, 50, 159, 206, 87]
 // 定义刺激矩阵,movielist= [1,2,3,4,5]([0,1,2,3,4]);
 var movielist = new Array();
 for (var i = 0; i < 5; i++) {
@@ -447,7 +447,7 @@ var rest = {
     stimulus: '<p>请休息五分钟……</p>',
     choices: ['<span id="timer">300</span>秒后继续'],
     button_html: btn_html_timer,
-    trial_duration: 5 * 1000
+    trial_duration: 60 * 5 * 1000
 }
 // 3.2.10 alert
 var clock = {
